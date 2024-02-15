@@ -1,3 +1,5 @@
+import dionysies.Tournoi;
+
 class Main {
   public static void main(String[] args) {
     String citation_antigone =
@@ -70,6 +72,39 @@ class Main {
                                     5, citation_thesmophories,
                                     100, citation_guêpes,
                                     0, "");
-    assert aristophane.getCitationTragedie() ==  citation_thesmophories;
+    System.out.println(aristophane.toString());
+    assert aristophane.getCitationTragedie()== citation_thesmophories;
+    assert aristophane.pointFort()=="Comédie";
+    assert aristophane.qualiteStyle(Style.COMÉDIE) ==100;
+    assert aristophane.citationStyle(Style.COMÉDIE) ==citation_guêpes;
+  
+    Journee journee = new Journee(Style.DRAME, 15, Style.COMÉDIE, 20, Style.TRAGÉDIE, 26);
+    System.out.println("Aristophane");
+    System.out.println(journee.scoreAuteur(aristophane, Periode.MATIN));
+    System.out.println(journee.scoreAuteur(aristophane, Periode.APRESMIDI));
+    System.out.println(journee.scoreAuteur(aristophane, Periode.SOIREE));
+
+    System.out.println("Euripide");
+    System.out.println(journee.scoreAuteur(euripide, Periode.MATIN));
+    System.out.println(journee.scoreAuteur(euripide, Periode.APRESMIDI));
+    System.out.println(journee.scoreAuteur(euripide, Periode.SOIREE));
+
+    System.out.println("Aristophane");
+    System.out.println(journee.scoreJournee(aristophane));
+    System.out.println("Euripide");
+    System.out.println(journee.scoreJournee(euripide));
+    System.out.println(journee.vainqueur(euripide, aristophane).toString());
+
+    //Tournoi:
+
+    Tournoi tournoi = new Tournoi("Le Tournoi");
+    tournoi.inscrire(euripide);
+    tournoi.inscrire(aristophane);
+    tournoi.inscrire(sophocle);
+    System.out.println(tournoi.getNom());
+    tournoi.afficheParticipants();
+    tournoi.débute();
+    System.out.println(tournoi.estCommencé());
+    System.out.println(tournoi.estTerminé());
   }
 }
